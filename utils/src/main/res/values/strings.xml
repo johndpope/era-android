@@ -1,0 +1,4 @@
+<resources>
+    <string name="perms_req">Permissions required</string>
+    <string name="perm_req_dialog_body">All permissions must be granted in order to proceed</string>
+</resources>

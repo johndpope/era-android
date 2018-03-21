@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="3dp"
+    tools:showIn="@layout/fragment_profile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llEmgContactsHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/timberwolf"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/emergency_contacts"
+                android:textColor="@color/dividerTextColor"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivCollapseExpand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/expand_collapse_cc"
+                android:src="@drawable/ic_expand" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llContactsCardBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <Button
+                android:id="@+id/btnEditContacts"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:background="@drawable/btn_edit_contacts"
+                android:foreground="?selectableItemBackground"
+                android:padding="10dp"
+                android:text="@string/add_contacts"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="12sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvHomeEmgContacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                tools:listitem="@layout/item_emergency_contacts" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
