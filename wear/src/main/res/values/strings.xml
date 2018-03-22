@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ERA</string>
+    <string name="panic_button">Panic Button</string>
+    <string name="enable_lock_widget">Enable lock screen widget</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirm_calling_911">Are you sure you want to call 911?</string>
+    <string name="widget_image">Widget image</string>
+    <string name="error_use_native_dialer">Error: Please try again or use native dialer instead</string>
+    <string name="alert_initiated">Alert initiated</string>
+    <string name="requires_location_perm_native_dialer">Requires location permission to be granted. Using native dialer.</string>
+    <string name="gps_required_native_dialer">GPS must be enabled. Using native dialer.</string>
+    <string name="init_please_wait">Initiating, please wait…</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>

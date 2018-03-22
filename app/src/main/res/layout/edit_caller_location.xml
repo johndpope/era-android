@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_edit_profile">
+
+    <TextView
+        android:id="@+id/tvCallerLocationHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/timberwolf"
+        android:paddingBottom="5dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="5dp"
+        android:text="@string/home_address_required"
+        android:textColor="@color/dividerTextColor"
+        android:textStyle="bold" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:labelFor="@+id/etLabel">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etLabel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/label_eg_home"
+            android:inputType="textCapSentences"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="Home" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:labelFor="@+id/etAddress">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/address"
+            android:inputType="textPostalAddress|textCapSentences"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="1280 Southbound, Los Molinos" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:columnCount="2"
+        app:orientation="vertical"
+        app:rowCount="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilLocality"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etLocality"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etLocality"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/City"
+                android:inputType="textCapSentences"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="NYC" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilRegion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etRegion"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etRegion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/state"
+                android:inputType="textCapSentences"
+                android:maxLength="2"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="NY" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilPostalCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etPostalCode"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etPostalCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/zip_code"
+                android:inputType="number"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="10457" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinnerCountryCodes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/country_codes"
+            android:padding="16dp"
+            app:layout_columnWeight="1" />
+
+    </android.support.v7.widget.GridLayout>
+
+</merge>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_edit_profile">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/timberwolf"
+        android:paddingBottom="5dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="5dp"
+        android:text="@string/health_data"
+        android:textColor="@color/dividerTextColor"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinnerBloodType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:entries="@array/blood_types"
+        app:layout_columnWeight="1" />
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        app:columnCount="2"
+        app:orientation="vertical"
+        app:rowCount="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilAllergies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etAllergies"
+            app:errorEnabled="true"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etAllergies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/allergies"
+                android:inputType="textCapSentences"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Wheat, Gluten" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilDisabilities"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etDisabilities"
+            app:errorEnabled="true"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etDisabilities"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/disabilities"
+                android:inputType="textCapSentences"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Wheelchair" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilMedicalCondition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etMedicalCondition"
+            app:errorEnabled="true"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etMedicalCondition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/medical_condition"
+                android:inputType="textCapSentences"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Asthma" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilMedications"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etMedications"
+            app:errorEnabled="true"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etMedications"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/medications"
+                android:inputType="textCapSentences"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Atrovent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.v7.widget.GridLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilMedicalNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:labelFor="@+id/etMedicalNotes"
+        app:errorEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etMedicalNotes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/medical_notes"
+            android:inputType="textMultiLine|textCapSentences"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="My GP's number is 201-204-2049" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</merge>

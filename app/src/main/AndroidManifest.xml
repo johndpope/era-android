@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.rapidsos.era">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+
+    <application
+        android:name="com.rapidsos.era.application.App"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="fullBackupContent">
+        <activity
+            android:name="com.rapidsos.era.splash_screen.view.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionOrStatusBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.rapidsos.era.main.view.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.rapidsos.era.authentication.auth_activity.view.AuthenticationActivity"
+            android:label="@string/title_activity_authentication"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionOrStatusBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.rapidsos.era.authentication.password_reset.view.PasswordResetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.rapidsos.era.authentication.phone_number.view.PhoneNumberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.rapidsos.era.profile.edit_profile.view.EditProfileActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.rapidsos.era.main.view.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.rapidsos.era.emergency_contacts.view.EmergencyContactsActivity"
+            android:label="@string/title_activity_emergency_contacts"
+            android:parentActivityName="com.rapidsos.era.main.view.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.rapidsos.era.settings.view.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="com.rapidsos.era.main.view.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver android:name="com.rapidsos.era.midas.widget.EraWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/era_widget_info" />
+        </receiver>
+
+        <service android:name="com.rapidsos.era.midas.service.WearableService">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+
+                <data
+                    android:host="*"
+                    android:path="/"
+                    android:scheme="wear" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.rapidsos.era.profile.service.ProfileService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service android:name="com.rapidsos.era.midas.service.FCMService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="1f32f0b8fcd4fc2d41751b5758629ac39942c452" />
+
+    </application>
+
+</manifest>

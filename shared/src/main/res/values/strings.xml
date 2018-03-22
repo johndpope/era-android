@@ -1,0 +1,9 @@
+<resources>
+    <string name="enable_lock_widget">Enable lock screen widget</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirm_calling_911">Are you sure you want to call 911?</string>
+    <string name="requires_location_perm_native_dialer">Requires location permission to be granted. Using native dialer.</string>
+    <string name="gps_required_native_dialer">GPS must be enabled. Using native dialer.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>

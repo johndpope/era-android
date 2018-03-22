@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">RAIN</string>
+
+    <string name="host_api">https://api.rapidsos.com/</string>
+    <string name="host_api_dev">https://api-dev.rapidsos.com/</string>
+    <string name="host_api_staging">https://api-staging.rapidsos.com/</string>
+    <string name="host_api_sandbox">https://api-sandbox.rapidsos.com/</string>
+
+</resources>

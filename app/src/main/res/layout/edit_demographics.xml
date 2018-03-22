@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_edit_profile">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/timberwolf"
+        android:paddingBottom="5dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="5dp"
+        android:text="@string/demographics"
+        android:textColor="@color/dividerTextColor"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvBirthday"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_authenticate"
+        android:drawableStart="@drawable/ic_calendar"
+        android:foreground="?selectableItemBackground"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/choose_birthday"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:baselineAligned="true"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinnerGenders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/genders"
+            android:padding="16dp" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinnerLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tilFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:labelFor="@+id/etFullName"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/full_name"
+            android:inputType="textPersonName|textCapSentences"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="James Lee" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/height"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:baselineAligned="true"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilHeightFeet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:labelFor="@+id/etHeightFeet"
+            app:errorEnabled="true">
+
+            <EditText
+                android:id="@+id/etHeightFeet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/feet"
+                android:inputType="number"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="5" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilHeightInches"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:labelFor="@+id/etHeightInches"
+            app:errorEnabled="true">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etHeightInches"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/inches"
+                android:inputType="number"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="11" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        app:columnCount="2"
+        app:orientation="vertical"
+        app:rowCount="2">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilWeight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etWeight"
+            app:errorEnabled="true"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etWeight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/weight"
+                android:inputType="number"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="153lb" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEthnicity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etEthnicity"
+            app:errorEnabled="true"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etEthnicity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/ethnicity"
+                android:inputType="textCapSentences"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Asian" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilOccupation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/etOccupation"
+            app:errorEnabled="true"
+            app:layout_columnWeight="1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etOccupation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/occupation"
+                android:inputType="textCapSentences"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Developer" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.v7.widget.GridLayout>
+
+</merge>
