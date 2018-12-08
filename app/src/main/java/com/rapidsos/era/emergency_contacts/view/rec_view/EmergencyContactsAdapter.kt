@@ -12,7 +12,7 @@ import org.jetbrains.anko.AnkoLogger
 
 class EmergencyContactPosition(val position: Int, val contact: EmergencyContactValue)
 
-class EmergencyContactsViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+class EmergencyContactsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 class EmergencyContactsAdapter : RecyclerView.Adapter<EmergencyContactsViewHolder>(), AnkoLogger {
 
@@ -28,28 +28,28 @@ class EmergencyContactsAdapter : RecyclerView.Adapter<EmergencyContactsViewHolde
 
     val contacts = arrayListOf<EmergencyContactValue>()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): EmergencyContactsViewHolder {
-        val layoutInflater = LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmergencyContactsViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_emergency_contacts, parent, false)
         return EmergencyContactsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: EmergencyContactsViewHolder?, position: Int) {
-        val itemView = holder?.itemView
+    override fun onBindViewHolder(holder: EmergencyContactsViewHolder, position: Int) {
+        val itemView = holder.itemView
         val contact = contacts[position]
 
-        itemView?.setOnClickListener {
+        itemView.setOnClickListener {
             onClickListener.onNext(EmergencyContactPosition(position, contact))
         }
 
-        itemView?.setOnLongClickListener {
+        itemView.setOnLongClickListener {
             onLongClickListener.onNext(contact)
             true
         }
 
-        itemView?.findViewById<TextView>(R.id.tvEmgContactFullName)?.text = contact.fullName
-        itemView?.findViewById<TextView>(R.id.tvEmgContactPhone)?.text = contact.email
-        itemView?.findViewById<TextView>(R.id.tvEmgContactEmail)?.text = contact.phone
+        itemView.findViewById<TextView>(R.id.tvEmgContactFullName)?.text = contact.fullName
+        itemView.findViewById<TextView>(R.id.tvEmgContactPhone)?.text = contact.email
+        itemView.findViewById<TextView>(R.id.tvEmgContactEmail)?.text = contact.phone
     }
 
     override fun getItemCount(): Int = contacts.size

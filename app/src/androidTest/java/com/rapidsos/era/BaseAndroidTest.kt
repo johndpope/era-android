@@ -20,9 +20,8 @@ open class BaseAndroidTest {
 
     @Singleton
     @Component(modules = [EraPreferencesModule::class, UtilsModule::class, DatabaseModule::class,
-        BeaconPreferencesModule::class, MidasModule::class, AndroidModule::class,
-        NotificationModule::class, BluetoothModule::class, LogOutModule::class,
-        ProfilePhotoModule::class])
+        MidasModule::class, AndroidModule::class, NotificationModule::class, BluetoothModule::class,
+        LogOutModule::class, ProfilePhotoModule::class])
     interface AndroidTestComponent : DIComponent {
         fun inject(authActivityTest: AuthActivityTest)
         fun inject(passwordResetActivityTest: PasswordResetActivityTest)
@@ -34,13 +33,12 @@ open class BaseAndroidTest {
                 .eraPreferencesModule(EraPreferencesModule(app))
                 .utilsModule(UtilsModule(app))
                 .databaseModule(DatabaseModule(app))
-                .beaconPreferencesModule(BeaconPreferencesModule(app))
                 .midasModule(MidasModule(app))
                 .androidModule(AndroidModule(app))
                 .notificationModule(NotificationModule(app))
                 .bluetoothModule(BluetoothModule(app))
                 .logOutModule(LogOutModule(app))
-                .profilePhotoModule(ProfilePhotoModule(app, app.host))
+                .profilePhotoModule(ProfilePhotoModule(app))
                 .build()
     }
 }
