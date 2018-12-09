@@ -49,7 +49,6 @@ open class App : Application() {
                 .notificationModule(NotificationModule(applicationContext))
                 .bluetoothModule(BluetoothModule(applicationContext))
                 .logOutModule(LogOutModule(applicationContext))
-                .profilePhotoModule(ProfilePhotoModule(applicationContext))
                 .build()
     }
 
