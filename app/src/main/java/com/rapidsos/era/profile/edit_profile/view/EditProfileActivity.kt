@@ -2,15 +2,12 @@ package com.rapidsos.era.profile.edit_profile.view
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import com.hannesdorfmann.mosby3.mvp.MvpActivity
-import com.mlsdev.rximagepicker.Sources
 import com.rapidsos.androidutils.isValidEmail
 import com.rapidsos.emergencydatasdk.data.profile.*
 import com.rapidsos.emergencydatasdk.data.profile.values.AddressValue
@@ -19,26 +16,19 @@ import com.rapidsos.emergencydatasdk.data.profile.values.LanguageValue
 import com.rapidsos.emergencydatasdk.data.profile.values.PhoneNumberValue
 import com.rapidsos.era.R
 import com.rapidsos.era.application.App
-import com.rapidsos.era.helpers.profile_photo.PhotoPickerController
 import com.rapidsos.era.profile.edit_profile.presenter.EditProfilePresenterImpl
 import com.rapidsos.utils.extensions.getString
 import com.rapidsos.utils.extensions.hideKeyboard
-import com.rapidsos.utils.extensions.setImageFromUrl
 import com.rapidsos.utils.extensions.snack
 import com.rapidsos.utils.utils.LanguageUtils
 import com.rapidsos.utils.utils.Utils
-import io.reactivex.SingleObserver
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_edit_profile.*
-import kotlinx.android.synthetic.main.dialog_change_profile_pic.view.*
 import kotlinx.android.synthetic.main.edit_caller_location.*
 import kotlinx.android.synthetic.main.edit_contact_info.*
 import kotlinx.android.synthetic.main.edit_demographics.*
 import kotlinx.android.synthetic.main.edit_medical_information.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
 import org.jetbrains.anko.longToast
-import java.io.File
 import java.util.*
 import javax.inject.Inject
 
@@ -46,27 +36,6 @@ class EditProfileActivity : MvpActivity<EditProfileView, EditProfilePresenterImp
         EditProfileView, AnkoLogger, DatePickerDialog.OnDateSetListener {
 
     private val languageUtils = LanguageUtils()
-
-    private val photoPickerController: PhotoPickerController by lazy {
-        PhotoPickerController(this)
-    }
-
-    private val chooseImageDialog: AlertDialog by lazy {
-        val view = LayoutInflater.from(this)
-                .inflate(R.layout.dialog_change_profile_pic, null)
-
-        view.tvChooseFromGallery.setOnClickListener {
-            getPhotoFromSource(Sources.GALLERY)
-        }
-
-        view.tvTakePhoto.setOnClickListener {
-            getPhotoFromSource(Sources.CAMERA)
-        }
-
-        AlertDialog.Builder(this)
-                .setView(view)
-                .create()
-    }
 
     private val birthdayDialog: DatePickerDialog by lazy {
         val calendar = Calendar.getInstance()
@@ -128,7 +97,6 @@ class EditProfileActivity : MvpActivity<EditProfileView, EditProfilePresenterImp
     lateinit var editProfilePresenter: EditProfilePresenterImpl
 
     private var birthdayInMillis: Long = 0
-    private var profilePictureFile: File? = null
 
     private lateinit var profile: Profile
 
@@ -148,11 +116,6 @@ class EditProfileActivity : MvpActivity<EditProfileView, EditProfilePresenterImp
 
         tvBirthday.setOnClickListener { birthdayDialog.show() }
 
-        ivProfilePic.setOnClickListener {
-            ivProfilePic.hideKeyboard()
-            chooseImageDialog.show()
-        }
-
         presenter.getProfileInformation()
 
         refreshLayoutEP.setOnRefreshListener {
@@ -162,28 +125,7 @@ class EditProfileActivity : MvpActivity<EditProfileView, EditProfilePresenterImp
 
     override fun onPause() {
         super.onPause()
-        chooseImageDialog.dismiss()
         birthdayDialog.dismiss()
-    }
-
-    private fun getPhotoFromSource(sources: Sources) {
-        chooseImageDialog.dismiss()
-
-        photoPickerController.choosePhotoFromSource(sources,
-                object : SingleObserver<PhotoPickerController.FileBitmap> {
-
-                    override fun onSubscribe(disposable: Disposable) {
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        error(throwable.message, throwable)
-                    }
-
-                    override fun onSuccess(fileBitmap: PhotoPickerController.FileBitmap) {
-                        profilePictureFile = fileBitmap.file
-                        ivProfilePic.setImageBitmap(fileBitmap.bitmap)
-                    }
-                })
     }
 
     private fun initGenderSpinner() {
@@ -348,12 +290,6 @@ class EditProfileActivity : MvpActivity<EditProfileView, EditProfilePresenterImp
                     this.value = listOf(etMedications.getString())
                 }
             }
-
-            if (profilePictureFile != null) {
-                presenter.uploadProfilePic(profile, profilePictureFile as File)
-            } else {
-                presenter.saveProfileInfo(profile)
-            }
         }
     }
 
@@ -415,8 +351,6 @@ class EditProfileActivity : MvpActivity<EditProfileView, EditProfilePresenterImp
 
         with(profile) {
 
-            displayProfilePicture()
-
             displayDemographicsInfo()
 
             displayContactInfo()
@@ -424,16 +358,6 @@ class EditProfileActivity : MvpActivity<EditProfileView, EditProfilePresenterImp
             displayCallerLocation()
 
             displayMedicalInfo()
-        }
-    }
-
-    private fun Profile.displayProfilePicture() {
-        photo?.let {
-            val values = it.value
-            if (values?.isNotEmpty() as Boolean) {
-                val photoUrl = values.first().url
-                ivProfilePic.setImageFromUrl(R.drawable.ic_person_white, photoUrl)
-            }
         }
     }
 
