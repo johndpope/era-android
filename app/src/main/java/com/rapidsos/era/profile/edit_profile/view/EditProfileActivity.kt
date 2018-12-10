@@ -290,6 +290,8 @@ class EditProfileActivity : MvpActivity<EditProfileView, EditProfilePresenterImp
                     this.value = listOf(etMedications.getString())
                 }
             }
+
+            presenter.saveProfileInfo(profile)
         }
     }
 
