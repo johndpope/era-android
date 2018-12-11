@@ -16,7 +16,6 @@ import com.rapidsos.era.emergency_contacts.view.rec_view.EmergencyContactsAdapte
 import com.rapidsos.era.profile.edit_profile.view.EditProfileActivity
 import com.rapidsos.era.profile.presenter.ProfilePresenterImpl
 import com.rapidsos.utils.extensions.hide
-import com.rapidsos.utils.extensions.setImageFromUrl
 import com.rapidsos.utils.extensions.show
 import com.rapidsos.utils.utils.LanguageUtils
 import kotlinx.android.synthetic.main.caller_location.*
@@ -98,14 +97,6 @@ class ProfileFragment : MvpFragment<ProfileView, ProfilePresenterImpl>(), Profil
             }
 
             emgContactsAdapter.setContacts(emergencyContacts)
-        }
-
-        profile.photo?.let {
-            it.value?.let {
-                if (it.isNotEmpty()) {
-                    ivProfilePic.setImageFromUrl(R.drawable.ic_person_white, it.first().url)
-                }
-            }
         }
 
         displayDemographicsInfo()

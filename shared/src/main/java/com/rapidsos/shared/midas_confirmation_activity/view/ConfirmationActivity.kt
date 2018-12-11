@@ -1,11 +1,13 @@
 package com.rapidsos.shared.midas_confirmation_activity.view
 
+import android.Manifest
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AlertDialog
 import com.hannesdorfmann.mosby3.mvp.MvpActivity
-import com.rapidsos.androidutils.PermissionUtils
 import com.rapidsos.database.database.EraDB
 import com.rapidsos.database.database.handlers.DbProfileHandler
 import com.rapidsos.midas.flow.MidasFLow
@@ -41,10 +43,6 @@ class ConfirmationActivity : MvpActivity<ConfirmationView, ConfirmationPresenter
 
     private val utils: Utils by lazy(LazyThreadSafetyMode.PUBLICATION) {
         Utils(this)
-    }
-
-    private val permissionUtils: PermissionUtils by lazy(LazyThreadSafetyMode.PUBLICATION) {
-        PermissionUtils(this)
     }
 
     private val dbProfileHandler: DbProfileHandler by lazy(LazyThreadSafetyMode.PUBLICATION) {
@@ -103,7 +101,7 @@ class ConfirmationActivity : MvpActivity<ConfirmationView, ConfirmationPresenter
             !preferences.isLoggedIn() || !preferences.isPinValidated() -> {
                 presenter.showMessage("You must be logged in with a validated phone number.")
             }
-            !permissionUtils.isLocationPermissionEnabled() -> {
+            !isLocationPermissionEnabled() -> {
                 displayLocationPermRequiredError()
             }
             !utils.isGpsEnabled() -> {
@@ -113,6 +111,11 @@ class ConfirmationActivity : MvpActivity<ConfirmationView, ConfirmationPresenter
                 presenter.triggerMidasCallFlow(midasFLow)
             }
         }
+    }
+
+    private fun isLocationPermissionEnabled(): Boolean {
+        return ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onPause() {
