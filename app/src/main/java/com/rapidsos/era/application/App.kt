@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.crashlytics.android.Crashlytics
+import com.rapidsos.beaconsdk.BeaconConfig
+import com.rapidsos.beaconsdk.BeaconSDK
 import com.rapidsos.emergencydatasdk.sdk.EraSdk
 import com.rapidsos.era.BuildConfig
 import com.rapidsos.era.helpers.dependency_injection.component.DIComponent
@@ -34,6 +36,8 @@ open class App : Application() {
         initCrashlytics()
 
         initEraSdk()
+
+        initBeaconSdk()
     }
 
     /**
@@ -44,11 +48,13 @@ open class App : Application() {
                 .eraPreferencesModule(EraPreferencesModule(applicationContext))
                 .utilsModule(UtilsModule(applicationContext))
                 .databaseModule(DatabaseModule(applicationContext))
+                .beaconPreferencesModule(BeaconPreferencesModule(applicationContext))
                 .midasModule(MidasModule(applicationContext))
                 .androidModule(AndroidModule(applicationContext))
                 .notificationModule(NotificationModule(applicationContext))
                 .bluetoothModule(BluetoothModule(applicationContext))
                 .logOutModule(LogOutModule(applicationContext))
+                .profilePhotoModule(ProfilePhotoModule(applicationContext))
                 .build()
     }
 
@@ -64,6 +70,18 @@ open class App : Application() {
      */
     private fun initEraSdk() {
         EraSdk(applicationContext).initialize(host, CLIENT_ID, CLIENT_SECRET)
+    }
+
+    /**
+     * Initialize the Beacon SDK
+     */
+    private fun initBeaconSdk() {
+        val beaconConfig = BeaconConfig.Builder(CLIENT_ID, CLIENT_SECRET)
+                .setOverrideSavedEmergencyNumber(false)
+                .setEmergencyPhoneNumbers("14158911911", "4158911911")
+                .build()
+
+        BeaconSDK.init(applicationContext, host, beaconConfig)
     }
 
     override fun attachBaseContext(base: Context?) {

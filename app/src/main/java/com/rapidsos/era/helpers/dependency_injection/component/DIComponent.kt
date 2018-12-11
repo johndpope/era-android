@@ -30,8 +30,9 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = [EraPreferencesModule::class, UtilsModule::class, DatabaseModule::class,
-    MidasModule::class, AndroidModule::class, NotificationModule::class, BluetoothModule::class,
-    LogOutModule::class])
+    BeaconPreferencesModule::class, MidasModule::class, AndroidModule::class,
+    NotificationModule::class, BluetoothModule::class, LogOutModule::class,
+    ProfilePhotoModule::class])
 interface DIComponent {
     fun inject(splashScreenPresenterImpl: LoginPresenterImpl)
     fun inject(authenticationActivity: AuthenticationActivity)
