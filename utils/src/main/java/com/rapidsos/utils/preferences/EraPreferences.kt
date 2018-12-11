@@ -20,9 +20,8 @@ class EraPreferences(context: Context) : KPreferences {
 
     override fun isLoggedIn() = preferences.getBoolean(KEY_IS_LOGGED_IN, false)
 
-    override fun getCurrentDevicePhoneNumber(): String {
-        return preferences.getString(KEY_DEVICE_NUMBER, "") as String
-    }
+    override fun getCurrentDevicePhoneNumber(): String =
+            preferences.getString(KEY_DEVICE_NUMBER, "")
 
     override fun setCurrentDevicePhoneNumber(phoneNumber: String) =
             preferences.edit().putString(KEY_DEVICE_NUMBER, phoneNumber).apply()

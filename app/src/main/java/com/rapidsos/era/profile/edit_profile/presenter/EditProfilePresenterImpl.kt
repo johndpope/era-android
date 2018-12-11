@@ -6,25 +6,29 @@ import com.rapidsos.database.database.handlers.DbSessionTokenHandler
 import com.rapidsos.database.database.handlers.DbUserHandler
 import com.rapidsos.emergencydatasdk.auth.login.SessionManager
 import com.rapidsos.emergencydatasdk.data.network_response.SessionToken
+import com.rapidsos.emergencydatasdk.data.profile.Photo
 import com.rapidsos.emergencydatasdk.data.profile.Profile
 import com.rapidsos.emergencydatasdk.internal.helpers.network.SessionTokenVerifier
 import com.rapidsos.emergencydatasdk.profile.ProfileUpdater
 import com.rapidsos.era.application.App
+import com.rapidsos.era.helpers.profile_photo.ProfilePhotoHandler
 import com.rapidsos.era.profile.edit_profile.view.EditProfileView
 import com.rapidsos.utils.preferences.EraPreferences
 import io.reactivex.MaybeObserver
+import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.error
 import org.jetbrains.anko.uiThread
+import java.io.File
 import javax.inject.Inject
 
 /**
  * @author Josias Sena
  */
-class EditProfilePresenterImpl @Inject constructor() :
+class EditProfilePresenterImpl @Inject constructor(private val profilePhotoHandler: ProfilePhotoHandler) :
         MvpBasePresenter<EditProfileView>(), EditProfilePresenter, AnkoLogger {
 
     private val compositeDisposable = CompositeDisposable()
@@ -148,6 +152,30 @@ class EditProfilePresenterImpl @Inject constructor() :
     override fun getFeetFromInches(inches: Int): Int = inches.div(12)
 
     override fun getRemainingInches(inches: Int): Int = inches.rem(12)
+
+    override fun uploadProfilePic(profile: Profile, profilePicFile: File) {
+        showLoading()
+
+        profilePhotoHandler.uploadProfilePicture(profilePicFile, object : SingleObserver<Photo> {
+            override fun onSubscribe(disposable: Disposable) {
+                compositeDisposable.add(disposable)
+            }
+
+            override fun onSuccess(photo: Photo) {
+                profile.photo = photo
+                saveProfileInfo(profile)
+            }
+
+            override fun onError(error: Throwable) {
+                error("Error uploading picture", error)
+                hideLoading()
+
+                if (isViewAttached) {
+                    view?.showError("Error uploading picture. Please try again")
+                }
+            }
+        })
+    }
 
     private fun showLoading() {
         if (isViewAttached) {

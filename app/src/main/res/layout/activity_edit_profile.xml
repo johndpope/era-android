@@ -26,9 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingTop="5dp"
-                android:paddingEnd="50dp"
                 android:paddingBottom="5dp"
+                android:paddingEnd="50dp"
+                android:paddingTop="5dp"
                 android:text="@string/profile" />
 
         </android.support.v7.widget.Toolbar>
@@ -50,21 +50,37 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
-                    android:contentDescription="@string/profile_photo"
-                    android:src="@drawable/sample_profile_pic"
-                    app:civ_border_width="1dp" />
+                    android:layout_marginTop="16dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/ivProfilePic"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/profile_photo"
+                        android:src="@drawable/ic_person"
+                        app:civ_border_width="1dp" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="bottom|end"
+                        android:contentDescription="@string/change_profile_picture"
+                        android:src="@drawable/ic_menu_camera"
+                        android:tint="@android:color/darker_gray" />
+
+                </FrameLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/personal_information"
                     android:textAllCaps="true"
                     android:textColor="#24314a"
