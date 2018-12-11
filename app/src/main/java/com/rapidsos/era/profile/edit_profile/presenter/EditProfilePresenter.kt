@@ -3,7 +3,6 @@ package com.rapidsos.era.profile.edit_profile.presenter
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 import com.rapidsos.emergencydatasdk.data.profile.Profile
 import com.rapidsos.era.profile.edit_profile.view.EditProfileView
-import java.io.File
 
 /**
  * @author Josias Sena
@@ -44,14 +43,6 @@ interface EditProfilePresenter : MvpPresenter<EditProfileView> {
      * @return the inches remaining after extracting the feet in inches
      */
     fun getRemainingInches(inches: Int): Int
-
-    /**
-     * Upload a profile picture, once uploaded update the profile with the profile pictures url
-     *
-     * @param profile the profile being updated
-     * @param profilePicFile the profile picture to upload
-     */
-    fun uploadProfilePic(profile: Profile, profilePicFile: File)
 
     /**
      * Dispose all of the disposables in the presenter
