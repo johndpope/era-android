@@ -13,8 +13,8 @@ android {
         applicationId "com.rapidsos.era"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 9
-        versionName "1.0.13"
+        versionCode 10
+        versionName "1.0.14"
 
         testInstrumentationRunner "com.rapidsos.era.EraTestRunner"
         vectorDrawables.useSupportLibrary = true
